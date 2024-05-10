@@ -1,10 +1,11 @@
-/* eslint-disable react/prop-types */
-import { Button, Col, NavLink } from 'react-bootstrap'
+import { Button, Col, Image, NavLink } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addToFavouriteAction,
   removeFromFavouriteAction,
+  setTrackAction,
 } from '../redux/actions'
+import play from '../assets/playerbuttons/play.png'
 
 function SingleCard({ data }) {
   const favourites = useSelector((state) => state.favourite.list)
@@ -12,12 +13,21 @@ function SingleCard({ data }) {
 
   const isFav = favourites.includes(data.id)
 
+  const handleSelectTrack = () => {
+    console.log('Selecting track:', data)
+    dispatch(setTrackAction(data))
+  }
+
   return (
     <Col>
       <NavLink className="track-card text-center">
+        <Button className="play-bg" onClick={handleSelectTrack}>
+          <Image src={play} className="play" />
+        </Button>
         <img
+          onClick={handleSelectTrack}
           className="img-fluid"
-          src={data.album.cover_medium}
+          src={data.album.cover_big}
           alt={`Cover for ${data.title}`}
         />
         <div className="d-flex align-items-top justify-content-evenly">
