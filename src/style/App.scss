@@ -222,6 +222,16 @@ ul {
 }
 
 .track-card{
+  p {
+    margin: 0;
+  }
+  .title {
+    display: -webkit-box; 
+            -webkit-box-orient: vertical; 
+            -webkit-line-clamp: 1; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+  }
   .like{
     color: $primary;
   }

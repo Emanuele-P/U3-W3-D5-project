@@ -35,10 +35,10 @@ function SingleCard({ data }) {
               style={{ fontSize: '20px' }}
             ></i>
           </Button>
-          <p>
-            Track: `{data.title}`<br />
-            Artist: {data.artist.name}
-          </p>
+          <div className="d-flex flex-column">
+            <p className="title">Track: {data.title}</p>
+            <p>Artist: {data.artist.name}</p>
+          </div>
         </div>
       </NavLink>
     </Col>
