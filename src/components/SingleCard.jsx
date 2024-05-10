@@ -1,7 +1,17 @@
 /* eslint-disable react/prop-types */
-import { Col, NavLink } from 'react-bootstrap'
+import { Button, Col, NavLink } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  addToFavouriteAction,
+  removeFromFavouriteAction,
+} from '../redux/actions'
 
 function SingleCard({ data }) {
+  const favourites = useSelector((state) => state.favourite.list)
+  const dispatch = useDispatch()
+
+  const isFav = favourites.includes(data.id)
+
   return (
     <Col>
       <NavLink className="track-card text-center">
@@ -10,10 +20,26 @@ function SingleCard({ data }) {
           src={data.album.cover_medium}
           alt={`Cover for ${data.title}`}
         />
-        <p>
-          Track: `{data.title}`<br />
-          Artist: {data.artist.name}
-        </p>
+        <div className="d-flex align-items-top justify-content-evenly">
+          <Button
+            className="like"
+            style={{ background: 'none', border: 'none' }}
+            onClick={() => {
+              isFav
+                ? dispatch(removeFromFavouriteAction(data.id))
+                : dispatch(addToFavouriteAction(data.id))
+            }}
+          >
+            <i
+              className={`bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}`}
+              style={{ fontSize: '20px' }}
+            ></i>
+          </Button>
+          <p>
+            Track: `{data.title}`<br />
+            Artist: {data.artist.name}
+          </p>
+        </div>
       </NavLink>
     </Col>
   )

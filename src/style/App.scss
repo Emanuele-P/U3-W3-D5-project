@@ -195,6 +195,7 @@ ul {
 
 .music-section {
 
+  #search-results,
   #rock,
   #pop,
   #hiphop {
@@ -220,3 +221,8 @@ ul {
   }
 }
 
+.track-card{
+  .like{
+    color: $primary;
+  }
+}

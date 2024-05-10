@@ -16,7 +16,7 @@ function TopBar() {
   }, [query, dispatch])
   return (
     <Col xs={12} md={9} className="offset-md-3">
-      <Row className="mb-5">
+      <Row>
         <Col xs={9} lg={11} className="mainLinks d-none d-md-flex">
           <Nav.Link>TRENDING</Nav.Link>
           <Nav.Link>PODCAST</Nav.Link>
@@ -26,7 +26,11 @@ function TopBar() {
         </Col>
       </Row>
       <Row>
-        <MusicSection id="search-results" title="Search Music" query={query} />
+        <MusicSection
+          id="search-results"
+          title="Search Music"
+          query={query || 'billie'}
+        />
         <MusicSection id="rock" title="Rock Classics" query="queen" />
         <MusicSection id="pop" title="Pop Culture" query="Katy" />
         <MusicSection
